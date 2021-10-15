@@ -85,7 +85,7 @@
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-react-hooks": "^4.2.1-alpha-c3a19e5af-20211014",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^7.0.2",
     "jest": "^27.2.5",

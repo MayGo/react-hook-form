@@ -64,18 +64,18 @@ export function useController<
 
   const onChange = React.useCallback(
     (event: any) => {
-      const value = getControllerValue(event);
-      setInputStateValue(value);
+      const controllerValue = getControllerValue(event);
+      setInputStateValue(controllerValue);
 
       registerProps.onChange({
         target: {
-          value,
+          value: controllerValue,
           name: name as InternalFieldName,
         },
         type: EVENTS.CHANGE,
       });
     },
-    [control],
+    [name, registerProps],
   );
   const onBlur = React.useCallback(() => {
     registerProps.onBlur({
@@ -85,8 +85,8 @@ export function useController<
       },
       type: EVENTS.BLUR,
     });
-  }, [value, name]);
-  console.warn('RENDER USWECONTROLLER');
+  }, [value, name, registerProps]);
+
   React.useEffect(() => {
     updateMounted(name, true);
 
