@@ -62,6 +62,31 @@ export function useController<
     [control],
   );
 
+  const onChange = React.useCallback(
+    (event: any) => {
+      const value = getControllerValue(event);
+      setInputStateValue(value);
+
+      registerProps.onChange({
+        target: {
+          value,
+          name: name as InternalFieldName,
+        },
+        type: EVENTS.CHANGE,
+      });
+    },
+    [control],
+  );
+  const onBlur = React.useCallback(() => {
+    registerProps.onBlur({
+      target: {
+        value,
+        name: name as InternalFieldName,
+      },
+      type: EVENTS.BLUR,
+    });
+  }, [value, name]);
+  console.warn('RENDER USWECONTROLLER');
   React.useEffect(() => {
     updateMounted(name, true);
 
@@ -83,27 +108,8 @@ export function useController<
 
   return {
     field: {
-      onChange: (event: any) => {
-        const value = getControllerValue(event);
-        setInputStateValue(value);
-
-        registerProps.onChange({
-          target: {
-            value,
-            name: name as InternalFieldName,
-          },
-          type: EVENTS.CHANGE,
-        });
-      },
-      onBlur: () => {
-        registerProps.onBlur({
-          target: {
-            value,
-            name: name as InternalFieldName,
-          },
-          type: EVENTS.BLUR,
-        });
-      },
+      onChange,
+      onBlur,
       name,
       value,
       ref: (elm) => {
