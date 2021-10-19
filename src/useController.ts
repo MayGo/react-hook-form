@@ -75,7 +75,8 @@ export function useController<
         type: EVENTS.CHANGE,
       });
     },
-    [name, registerProps],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [name],
   );
   const onBlur = React.useCallback(() => {
     registerProps.onBlur({
@@ -85,7 +86,8 @@ export function useController<
       },
       type: EVENTS.BLUR,
     });
-  }, [value, name, registerProps]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value, name]);
 
   React.useEffect(() => {
     updateMounted(name, true);
